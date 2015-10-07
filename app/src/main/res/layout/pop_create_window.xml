@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="#65d2b3">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/create_new_item_title"
+        android:id="@+id/CreateItemTitle"
+        android:layout_marginTop="15dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold"
+        android:textSize="30sp" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/new_item_name"
+        android:id="@+id/NewItemNameText"
+        android:textSize="25sp"
+        android:maxLength="60"
+        android:layout_below="@+id/CreateItemTitle"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_centerHorizontal="true" /> 
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/new_book_item"
+        android:id="@+id/NewBookButton"
+        android:layout_below="@+id/NewItemNameText"
+        android:layout_alignLeft="@+id/NewItemNameText"
+        android:layout_alignStart="@+id/NewItemNameText"
+        android:layout_alignRight="@+id/NewItemNameText"
+        android:layout_alignEnd="@+id/NewItemNameText"
+        android:checked="true"
+        android:textSize="25sp" />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/new_film_item"
+        android:id="@+id/NewFilmButton"
+        android:checked="false"
+        android:textSize="25sp"
+        android:layout_alignTop="@+id/NewBookButton"
+        android:layout_alignRight="@+id/NewItemNameText"
+        android:layout_alignEnd="@+id/NewItemNameText" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/confirm"
+        android:id="@+id/ConfirmCreateButton"
+        android:layout_below="@+id/NewBookButton"
+        android:layout_centerVertical="true"
+        android:textStyle="bold"
+        android:textSize="25sp"
+        android:layout_alignLeft="@+id/NewBookButton"
+        android:layout_alignStart="@+id/NewBookButton"
+        android:layout_alignRight="@+id/NewFilmButton"
+        android:layout_alignEnd="@+id/NewFilmButton"/>
+</RelativeLayout>
