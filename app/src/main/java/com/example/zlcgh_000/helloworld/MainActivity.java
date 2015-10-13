@@ -3,35 +3,41 @@ package com.example.zlcgh_000.helloworld;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Layout;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 
 public class MainActivity extends AppCompatActivity {
 
-    public final static String EXTRA_MESSAGE = "com.mycompany.myfirstapp.MESSAGE";
-
-    public void createMessage(View view){
-        Intent intent = new Intent(this,DisplayMessageActivity.class);
-        EditText editText = (EditText) findViewById(R.id.edit_message);
-        String message = editText.getText().toString();
-        intent.putExtra(EXTRA_MESSAGE, message);
-        startActivity(intent);
-
-    }
+    private LinearLayout linearLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        linearLayout = (LinearLayout) findViewById(R.id.main_activity);
 
         Button createButton = (Button) findViewById(R.id.create_button);
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, CreateItemActivity.class));
+                Intent myIntent = new Intent(MainActivity.this, CreateItemActivity.class);
+                startActivity(myIntent);
+                createItem(myIntent.getStringExtra("newItemName"),
+                        myIntent.getBooleanExtra("newBook", true));
             }
         });
+    }
+
+    private void createItem(String itemName, boolean newBook){
+        TextView newItem = new TextView(this);
+        newItem.setText(itemName);
+        newItem.setVisibility(View.VISIBLE);
+        linearLayout.addView(newItem);
     }
 }
