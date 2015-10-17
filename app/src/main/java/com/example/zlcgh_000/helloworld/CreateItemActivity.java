@@ -13,6 +13,8 @@ import android.widget.TextView;
  * Create Item Window.
  */
 public class CreateItemActivity extends Activity {
+
+
     private boolean newBook = true;
     private RadioGroup newItemType;
 
@@ -44,11 +46,16 @@ public class CreateItemActivity extends Activity {
                 TextView textView = (TextView) findViewById(R.id.NewItemNameText);
                 CharSequence itemName = textView.getText();
                 //TODO: check string value
-                getIntent().putExtra("newItemName", itemName);
-                getIntent().putExtra("newBook", newBook);
-                // MainActivity.createItem(itemName, newBook);
+
+                if(itemName.length()>0){
+                    getIntent().putExtra("newItemName", itemName.toString());
+                    getIntent().putExtra("newBook", newBook);
+                    // MainActivity.createItem(itemName, newBook);
+                    setResult(RESULT_OK, getIntent());
+                }
                 finish();
             }
         });
     }
+
 }

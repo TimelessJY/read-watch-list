@@ -14,30 +14,40 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private LinearLayout linearLayout;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        linearLayout = (LinearLayout) findViewById(R.id.main_activity);
 
         Button createButton = (Button) findViewById(R.id.create_button);
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent myIntent = new Intent(MainActivity.this, CreateItemActivity.class);
-                startActivity(myIntent);
-                createItem(myIntent.getStringExtra("newItemName"),
-                        myIntent.getBooleanExtra("newBook", true));
+                startActivityForResult(myIntent, 0);
             }
         });
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == 0 && resultCode == RESULT_OK){
+            String temp = data.getStringExtra("newItemName");
+            createItem(temp,
+                    data.getBooleanExtra("newBook", true));
+
+            System.out.println("------------------");
+            System.out.println(temp);
+        }
+    }
+
     private void createItem(String itemName, boolean newBook){
-        TextView newItem = new TextView(this);
+        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.main_activity);
+
+        TextView newItem = new TextView(MainActivity.this);
         newItem.setText(itemName);
         newItem.setVisibility(View.VISIBLE);
+
         linearLayout.addView(newItem);
     }
 }
